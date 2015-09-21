@@ -1,0 +1,42 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../demo-2/demo-2.html">
+
+<dom-module id="demo-1">
+  <style>
+  :host: {
+    display: block;
+  }
+  .container {
+    padding: 20px;
+  }
+  demo-2: {
+    display: block;
+  }
+  </style>
+  <template>
+    <div class="container">
+      <div class="title">{{txt}}</div>
+      <demo-2 some-prop="{{someProp}}"></demo-2>
+      <demo-2 some-prop="{{someProp}}"></demo-2>
+      
+    </div>     
+  </template>
+  <script>
+  Polymer({
+    properties: {
+      txt: {
+        type: String,
+        value: 'this is component-1'
+      },
+      someProp: {
+        type: String,
+        value: 'this is component-2, I am in component-1'
+      }
+    },
+    ready: function() {
+      this.items = [1,2,3,4]
+      this.flag = true
+    }
+  })
+  </script>
+</dom-mudule>

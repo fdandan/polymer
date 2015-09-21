@@ -1,0 +1,71 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="demo-2">
+  <style>
+  host:{
+    display: block;
+  }
+  .container {
+    height: 200px;
+    border: 1px dashed #555;
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+  .title {
+    padding-bottom: 30px;
+  }
+  input{
+    width: 50px;
+  }
+  </style>
+  <template>
+    <div class="container">
+      <div class="title">
+        <span>{{someProp}}</span>
+      </div>
+      <div vertical layout>
+        <span>This is template repeator(dom-repeat)</span>
+        <div horizontal layout style="padding-bottom:30px;">
+          <template is="dom-repeat" items={{items}}>
+            <div flex on-click="onButtonClicked" data-index$="{{index}}"><input type="button" value="{{index}}"/></div>
+          </template>
+      </div>
+      
+      </div>
+      <template is="dom-if" if="{{flag}}">
+        <div>this is condition complate(dom-if)</div>
+      </template>
+      <br>
+      <button on-click="toggleDiv">点我<span>{{msg}}</span></button>
+    </div>
+  </template>
+  <script>
+  Polymer({
+    properties: {
+      msg: {
+        type: String,
+        value: '隐藏文本'
+      },
+      flag: {
+        type: Boolean,
+        value: true
+      }
+    },
+    onButtonClicked: function(e) { 
+      alert(e.currentTarget.dataset.index)    
+    },
+    toggleDiv: function() {
+      if (this.flag) {
+        this.msg = '显示文本'
+        this.flag = false
+      } else {
+        this.msg = '隐藏文本'
+        this.flag = true
+      }
+    },
+    ready: function() { 
+      this.items = [1, 2, 3, 4]
+    }
+  })
+  </script>
+</dom-module>
